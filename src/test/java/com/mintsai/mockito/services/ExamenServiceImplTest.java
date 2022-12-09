@@ -112,4 +112,14 @@ class ExamenServiceImplTest {
         assertNull(examen);
         assertNull(examen1);
     }
+    @Test
+    void testExamenPreguntasNull(){
+        when(examenRepository.save(Datos.EXAMEN)).thenReturn(Datos.EXAMEN);
+        Examen examen = service.save(Datos.EXAMEN);
+        assertNotNull(examen);
+        assertEquals(Examen.class, service.save(examen).getClass());
+        assertEquals("Quimica", examen.getNombre());
+        assertEquals(4L, examen.getId());
+        assertTrue(examen.getPreguntas().isEmpty());
+    }
 }
